@@ -6,507 +6,441 @@
 <title>Puneet Kumar — Research Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #f6f3ec;
-    --paper-deep: #efe9dc;
-    --ink: #1c1e1b;
-    --ink-soft: #4a4d47;
-    --rule: #d8d1bf;
-    --accent: #2f7a78;
-    --accent-soft: #e4efee;
-    --accent-deep: #1d5654;
+    --ink: #1d1d1f;
+    --ink-dim: #6e6e76;
+    --ink-faint: #8a8a90;
+    --glass: rgba(255,255,255,0.48);
+    --glass-strong: rgba(255,255,255,0.74);
+    --glass-border: rgba(255,255,255,0.9);
+    --blue: #0071e3;
+    --teal: #0fb8ac;
+    --violet: #7d6ff0;
+    --pink: #ee6f9a;
+    --amber: #f0a860;
+    --gradient: linear-gradient(120deg, #0071e3, #0fb8ac);
+    --gradient-tri: linear-gradient(115deg, #0071e3, #0fb8ac 40%, #7d6ff0 72%, #ee6f9a);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--paper);
+    background: #eef1f7;
     color: var(--ink);
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
-  ::selection { background: var(--accent-soft); color: var(--accent-deep); }
-
+  ::selection { background: var(--blue); color: #fff; }
   a { color: inherit; text-decoration: none; }
+  h1, h2, h3 { font-weight: 700; letter-spacing: -0.025em; }
+  .mono { font-family: 'JetBrains Mono', monospace; letter-spacing: 0.02em; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 2; }
 
-  h1, h2, h3 {
-    font-family: 'Source Serif 4', serif;
-    font-weight: 600;
-    letter-spacing: -0.01em;
+  /* ---------- Background ---------- */
+  .bg-fixed { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .orb { position: absolute; border-radius: 50%; filter: blur(64px); opacity: 0.55; }
+  .orb-1 { width: 620px; height: 620px; top: -220px; left: -140px; background: radial-gradient(circle, #a8d4f5, transparent 70%); animation: floatA 26s ease-in-out infinite; }
+  .orb-2 { width: 500px; height: 500px; top: 4%; right: -180px; background: radial-gradient(circle, #d6c4f7, transparent 70%); animation: floatB 21s ease-in-out infinite; }
+  .orb-3 { width: 460px; height: 460px; bottom: -160px; left: 18%; background: radial-gradient(circle, #aef0dd, transparent 70%); animation: floatC 27s ease-in-out infinite; }
+  .orb-4 { width: 400px; height: 400px; bottom: 20%; right: 6%; background: radial-gradient(circle, #f6cfe0, transparent 70%); animation: floatA 23s ease-in-out infinite reverse; }
+  .orb-5 { width: 340px; height: 340px; top: 45%; left: 44%; background: radial-gradient(circle, #ffe3b3, transparent 70%); opacity: 0.35; animation: floatB 30s ease-in-out infinite; }
+
+  @keyframes floatA { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(45px,32px) scale(1.08); } }
+  @keyframes floatB { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-32px,42px) scale(0.94); } }
+  @keyframes floatC { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(28px,-38px) scale(1.05); } }
+
+  .grain {
+    position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.02; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  .mono {
-    font-family: 'JetBrains Mono', monospace;
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; background: var(--gradient-tri);
+    z-index: 100; width: 0%; box-shadow: 0 0 14px rgba(0,113,227,0.35); border-radius: 0 3px 3px 0;
+  }
+
+  /* ---------- Glass utility ---------- */
+  .glass {
+    background: var(--glass);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px rgba(31,41,55,0.08), 0 1px 0 rgba(255,255,255,0.6) inset, 0 -1px 0 rgba(31,41,55,0.03) inset;
+    position: relative;
+  }
+  .glass::before {
+    content: ""; position: absolute; top: 0; left: 8%; right: 8%; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.95), transparent);
+  }
+
+  /* ---------- Header ---------- */
+  header { position: sticky; top: 16px; z-index: 60; display: flex; justify-content: center; padding: 0 20px; }
+  .nav-inner {
+    max-width: 760px; width: 100%; padding: 11px 12px 11px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-radius: 100px; background: var(--glass-strong);
+    backdrop-filter: blur(28px) saturate(200%); -webkit-backdrop-filter: blur(28px) saturate(200%);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 30px rgba(31,41,55,0.1), 0 1px 0 rgba(255,255,255,0.85) inset;
+  }
+  .nav-name { font-weight: 700; font-size: 0.98rem; color: var(--ink); display: flex; align-items: center; gap: 9px; }
+  .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gradient); box-shadow: 0 0 10px rgba(0,113,227,0.5); animation: pulse 2.2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.55; transform: scale(0.78); } }
+  .nav-links { display: flex; gap: 22px; font-size: 0.83rem; color: var(--ink-dim); font-weight: 500; }
+  .nav-links a { transition: color 0.25s ease; }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-cta {
+    font-size: 0.8rem; font-weight: 600; color: #fff; padding: 8px 18px; border-radius: 100px;
+    background: var(--gradient); box-shadow: 0 4px 14px rgba(0,113,227,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,113,227,0.4); }
+  @media (max-width: 620px) { .nav-links { display: none; } }
+
+  /* ---------- Hero ---------- */
+  .profile-photo-wrap {
+    display: flex; justify-content: center; margin-bottom: 26px;
+    opacity: 0; animation: fadeUp 0.9s cubic-bezier(.2,.9,.25,1) forwards 0s;
+  }
+  .profile-photo {
+    width: 108px; height: 108px; border-radius: 50%;
+    padding: 4px;
+    position: relative;
+    background: var(--gradient-tri);
+    background-size: 220% auto;
+    animation: gradShift 7s ease-in-out infinite;
+    box-shadow: 0 10px 30px rgba(31,41,55,0.16);
+  }
+  .profile-photo::before { content: none; }
+  .profile-photo img {
+    width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block;
+    border: 3px solid rgba(255,255,255,0.9);
+  }
+  .profile-photo.no-photo {
+    display: flex; align-items: center; justify-content: center;
+  }
+  .profile-photo.no-photo img { display: none; }
+  .profile-photo.no-photo::after {
+    content: "PK";
+    width: 100%; height: 100%; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--glass-strong);
+    backdrop-filter: blur(20px);
+    border: 3px solid rgba(255,255,255,0.9);
+    font-weight: 700; font-size: 1.4rem; color: var(--ink-dim);
     letter-spacing: 0.02em;
   }
 
-  .wrap {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 0 32px;
-  }
-
-  /* ---------- Header / Nav ---------- */
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: rgba(246, 243, 236, 0.88);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .nav-inner {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 18px 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .nav-name {
-    font-family: 'Source Serif 4', serif;
-    font-weight: 600;
-    font-size: 1.05rem;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 28px;
-    font-size: 0.85rem;
-    color: var(--ink-soft);
-  }
-
-  .nav-links a { position: relative; padding-bottom: 3px; }
-  .nav-links a:hover { color: var(--accent-deep); }
-
-  /* ---------- Hero ---------- */
-  .hero {
-    padding: 100px 0 80px;
-    position: relative;
-    overflow: hidden;
-  }
+  .hero { padding: 80px 0 60px; position: relative; text-align: center; }
 
   .hero-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.78rem;
-    color: var(--accent-deep);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-bottom: 18px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .hero-eyebrow::before {
-    content: "";
-    width: 22px;
-    height: 1px;
-    background: var(--accent);
-    display: inline-block;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; color: var(--blue);
+    text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 28px;
+    display: inline-flex; align-items: center; gap: 10px; padding: 9px 20px; border-radius: 30px;
+    opacity: 0; animation: fadeUp 0.9s cubic-bezier(.2,.9,.25,1) forwards 0.1s;
   }
 
   .hero h1 {
-    font-size: clamp(2.2rem, 5vw, 3.4rem);
-    line-height: 1.12;
-    max-width: 15ch;
-    margin-bottom: 20px;
+    font-size: clamp(2.4rem, 6.2vw, 4.3rem); line-height: 1.06; max-width: 17ch; margin: 0 auto 24px;
+    opacity: 0; animation: fadeUp 0.9s cubic-bezier(.2,.9,.25,1) forwards 0.25s; color: var(--ink);
   }
-
-  .hero h1 em {
-    font-style: italic;
-    color: var(--accent-deep);
+  .hero h1 .grad {
+    background: var(--gradient-tri); background-size: 220% auto;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: gradShift 7s ease-in-out infinite;
   }
+  @keyframes gradShift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 
   .hero-sub {
-    font-size: 1.08rem;
-    color: var(--ink-soft);
-    max-width: 52ch;
-    margin-bottom: 34px;
+    font-size: 1.1rem; color: var(--ink-dim); max-width: 52ch; margin: 0 auto 38px;
+    opacity: 0; animation: fadeUp 0.9s cubic-bezier(.2,.9,.25,1) forwards 0.4s;
   }
 
-  .hero-links {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
+  .hero-links { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fadeUp 0.9s cubic-bezier(.2,.9,.25,1) forwards 0.55s; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-  .btn {
-    font-size: 0.85rem;
-    padding: 10px 20px;
-    border: 1px solid var(--ink);
-    border-radius: 2px;
-    transition: all 0.2s ease;
-  }
+  .btn { font-size: 0.9rem; padding: 13px 28px; border-radius: 100px; font-weight: 600; transition: transform 0.35s cubic-bezier(.2,.9,.25,1), box-shadow 0.35s ease; }
+  .btn.primary { background: var(--gradient); color: #fff; border: none; box-shadow: 0 8px 24px rgba(0,113,227,0.3), 0 1px 0 rgba(255,255,255,0.3) inset; }
+  .btn.primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 14px 34px rgba(0,113,227,0.4); }
+  .btn.ghost { color: var(--ink); background: var(--glass); backdrop-filter: blur(20px) saturate(180%); border: 1px solid var(--glass-border); box-shadow: 0 4px 16px rgba(31,41,55,0.06), 0 1px 0 rgba(255,255,255,0.7) inset; }
+  .btn.ghost:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(31,41,55,0.1); }
 
-  .btn.primary {
-    background: var(--ink);
-    color: var(--paper);
+  /* ---------- Signature 1: Scent Molecule Map ---------- */
+  .scent-map-wrap {
+    margin-top: 56px; border-radius: 28px; padding: 20px;
+    opacity: 0; animation: fadeUp 1s cubic-bezier(.2,.9,.25,1) forwards 0.7s;
+    position: relative;
   }
-
-  .btn.primary:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
-  .btn:not(.primary):hover { background: var(--ink); color: var(--paper); }
-
-  /* node diagram, signature element */
-  .node-diagram {
-    position: absolute;
-    right: -60px;
-    top: 60px;
-    width: 340px;
-    height: 340px;
-    opacity: 0.55;
-    pointer-events: none;
+  .scent-map-label {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--ink-faint);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; padding: 0 6px;
   }
+  .scent-map-label .live { color: var(--teal); display: flex; align-items: center; gap: 6px; font-weight: 500; }
+  .scent-map-label .live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 10px var(--teal); animation: pulse 1.6s ease-in-out infinite; }
+  canvas#scentMap { width: 100%; height: 280px; display: block; border-radius: 18px; cursor: crosshair; }
 
-  @media (max-width: 780px) {
-    .node-diagram { display: none; }
-  }
-
-.hero-top {
-    display: flex;
-    align-items: flex-start;
-    gap: 40px;
-  }
-
-  .hero-photo {
-    flex-shrink: 0;
-    width: 132px;
-    height: 132px;
-    border-radius: 4px;
-    overflow: hidden;
-    border: 1px solid var(--rule);
-    background: var(--paper-deep);
-  }
-
-  .hero-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: grayscale(15%);
-  }
-
-  @media (max-width: 640px) {
-    .hero-top { flex-direction: column-reverse; gap: 24px; }
-    .hero-photo { width: 96px; height: 96px; }
-  }
+  .scroll-cue { margin-top: 50px; display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0; animation: fadeUp 1s ease forwards 0.95s; }
+  .scroll-cue span { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; }
+  .scroll-mouse { width: 22px; height: 36px; border: 1px solid rgba(29,29,31,0.2); border-radius: 12px; position: relative; }
+  .scroll-mouse::before { content: ""; position: absolute; top: 6px; left: 50%; width: 3px; height: 8px; background: var(--blue); border-radius: 2px; transform: translateX(-50%); animation: scrollDot 1.6s ease-in-out infinite; }
+  @keyframes scrollDot { 0% { opacity: 1; top: 6px; } 70% { opacity: 0; top: 18px; } 100% { opacity: 0; top: 6px; } }
 
   /* ---------- Section shell ---------- */
-  section { padding: 64px 0; border-top: 1px solid var(--rule); }
+  section { padding: 96px 0; position: relative; }
+  .reveal { opacity: 0; transform: translateY(34px); transition: opacity 0.8s cubic-bezier(.2,.9,.25,1), transform 0.8s cubic-bezier(.2,.9,.25,1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 44px; gap: 20px; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--ink-faint); padding: 5px 14px; border-radius: 20px; background: var(--glass); backdrop-filter: blur(16px); border: 1px solid var(--glass-border); }
+  section h2 { font-size: clamp(1.7rem, 4vw, 2.2rem); color: var(--ink); }
+  section h2 .grad { background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .section-intro { color: var(--ink-dim); max-width: 60ch; margin-bottom: 44px; font-size: 1rem; }
 
-  .section-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 40px;
-    gap: 20px;
+  /* ---------- Research interests: glass tiles w/ mini classifier viz ---------- */
+  .interest-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 780px) { .interest-grid { grid-template-columns: 1fr; } }
+  .interest-card { border-radius: 22px; padding: 28px 24px; transition: transform 0.45s cubic-bezier(.2,.9,.25,1), box-shadow 0.45s ease; }
+  .interest-card:hover { transform: translateY(-8px); box-shadow: 0 20px 46px rgba(31,41,55,0.14), 0 1px 0 rgba(255,255,255,0.7) inset; }
+  .icon-badge { width: 44px; height: 44px; border-radius: 13px; background: var(--gradient); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; box-shadow: 0 6px 16px rgba(0,113,227,0.3), 0 1px 0 rgba(255,255,255,0.4) inset; }
+  .icon-badge svg { width: 21px; height: 21px; stroke: #fff; fill: none; stroke-width: 1.8; }
+  .interest-card .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--blue); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 10px; font-weight: 500; }
+  .interest-card h3 { font-size: 1.08rem; margin-bottom: 10px; font-weight: 700; color: var(--ink); }
+  .interest-card p { font-size: 0.9rem; color: var(--ink-dim); }
+
+  /* ---------- Signature 2: Classifier confusion-grid ---------- */
+  .classifier-panel { border-radius: 26px; padding: 30px 32px; margin-top: 20px; }
+  .classifier-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 22px; flex-wrap: wrap; gap: 10px; }
+  .classifier-head h3 { font-size: 1.05rem; color: var(--ink); }
+  .classifier-head span { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--ink-faint); }
+
+  .classifier-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-bottom: 18px; }
+  .cg-cell {
+    aspect-ratio: 1; border-radius: 8px; position: relative;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: rgba(29,29,31,0.55);
+    transition: transform 4s ease, background 4s ease;
+    background: rgba(0,113,227,0.06);
   }
+  .cg-labels { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-bottom: 6px; }
+  .cg-labels span { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--ink-faint); text-align: center; }
 
-  .section-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.78rem;
-    color: var(--ink-soft);
-  }
+  .classifier-legend { display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--ink-faint); }
+  .legend-bar { flex: 1; height: 6px; border-radius: 4px; background: linear-gradient(90deg, rgba(0,113,227,0.06), var(--blue)); max-width: 200px; }
 
-  section h2 {
-    font-size: 1.6rem;
-  }
+  /* ---------- Spectrum deep-dive section ---------- */
+  .spectrum-panel { border-radius: 28px; padding: 30px 30px 22px; }
+  .spectrum-label { display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .spectrum-label .live { color: var(--teal); display: flex; align-items: center; gap: 6px; font-weight: 500; }
+  .spectrum-label .live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 10px var(--teal); animation: pulse 1.6s ease-in-out infinite; }
+  .spectrum-readout { display: flex; gap: 26px; margin-bottom: 16px; flex-wrap: wrap; }
+  .readout-item { font-family: 'JetBrains Mono', monospace; }
+  .readout-item .rv { font-size: 1.15rem; font-weight: 600; color: var(--ink); }
+  .readout-item .rl { font-size: 0.65rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.08em; }
+  canvas#spectrum { width: 100%; height: 170px; display: block; border-radius: 14px; }
+  .spectrum-hint { margin-top: 14px; font-size: 0.78rem; color: var(--ink-faint); text-align: center; font-family: 'JetBrains Mono', monospace; }
 
-  /* ---------- Research interests ---------- */
-  .interest-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-  }
-
-  @media (max-width: 640px) { .interest-grid { grid-template-columns: 1fr; } }
-
-  .interest-card {
-    background: var(--paper);
-    padding: 26px 28px;
-  }
-
-  .interest-card .tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--accent-deep);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    display: block;
-    margin-bottom: 10px;
-  }
-
-  .interest-card h3 {
-    font-size: 1.05rem;
-    margin-bottom: 8px;
-    font-weight: 600;
-  }
-
-  .interest-card p {
-    font-size: 0.92rem;
-    color: var(--ink-soft);
-  }
-
-  /* ---------- Publications ---------- */
-  .pub-list { display: flex; flex-direction: column; }
-
-  .pub {
-    display: grid;
-    grid-template-columns: 64px 1fr;
-    gap: 24px;
-    padding: 22px 0;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .pub:last-child { border-bottom: none; }
-
-  .pub-year {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem;
-    color: var(--ink-soft);
-    padding-top: 3px;
-  }
-
-  .pub-title {
-    font-size: 1.02rem;
-    font-weight: 500;
-    margin-bottom: 6px;
-    color: var(--ink);
-  }
-
-  .pub-meta {
-    font-size: 0.86rem;
-    color: var(--ink-soft);
-    font-style: italic;
-  }
-
-  .pub-status {
-    display: inline-block;
-    margin-top: 8px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding: 3px 8px;
-    background: var(--accent-soft);
-    color: var(--accent-deep);
-    border-radius: 2px;
-  }
-
-  /* ---------- Timeline (education/experience) ---------- */
-  .timeline { display: flex; flex-direction: column; }
-
-  .t-item {
-    display: grid;
-    grid-template-columns: 130px 1fr;
-    gap: 24px;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .t-item:last-child { border-bottom: none; }
-
-  .t-date {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--accent-deep);
-  }
-
-  .t-role { font-weight: 600; margin-bottom: 4px; }
-  .t-org { color: var(--ink-soft); font-size: 0.92rem; }
+  /* ---------- Timeline: liquid glass notebook ---------- */
+  .timeline { display: flex; flex-direction: column; gap: 18px; }
+  .t-card { border-radius: 20px; padding: 24px 28px; display: grid; grid-template-columns: 140px 1fr; gap: 22px; align-items: start; transition: transform 0.4s cubic-bezier(.2,.9,.25,1), box-shadow 0.4s ease; }
+  .t-card:hover { transform: translateX(6px); box-shadow: 0 16px 36px rgba(31,41,55,0.1), 0 1px 0 rgba(255,255,255,0.7) inset; }
+  @media (max-width: 640px) { .t-card { grid-template-columns: 1fr; gap: 6px; } }
+  .t-date { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--blue); font-weight: 500; padding-top: 3px; }
+  .t-role { font-weight: 700; margin-bottom: 4px; font-size: 1.02rem; color: var(--ink); }
+  .t-org { color: var(--ink-dim); font-size: 0.9rem; }
 
   /* ---------- Skills ---------- */
-  .skills-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
+  .skills-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .skill-pill { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; padding: 10px 18px; border-radius: 100px; color: var(--ink-dim); font-weight: 500; background: var(--glass); backdrop-filter: blur(16px) saturate(180%); border: 1px solid var(--glass-border); box-shadow: 0 2px 10px rgba(31,41,55,0.05), 0 1px 0 rgba(255,255,255,0.6) inset; transition: all 0.35s cubic-bezier(.2,.9,.25,1); }
+  .skill-pill:hover { color: #fff; background: var(--gradient); border-color: transparent; transform: translateY(-3px) scale(1.03); box-shadow: 0 10px 24px rgba(0,113,227,0.28); }
 
-  .skill-pill {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.78rem;
-    padding: 7px 14px;
-    border: 1px solid var(--rule);
-    border-radius: 20px;
-    color: var(--ink-soft);
-    background: var(--paper-deep);
-  }
+  /* ---------- Contact ---------- */
+  .contact-section { text-align: center; padding: 110px 0 60px; }
+  .contact-section h2 { font-size: clamp(2.1rem, 5.6vw, 2.9rem); margin-bottom: 18px; color: var(--ink); }
+  .contact-section p { color: var(--ink-dim); max-width: 46ch; margin: 0 auto 38px; font-size: 1.02rem; }
+  .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 64px; }
 
-  /* ---------- Contact / footer ---------- */
-  .contact-section { text-align: center; padding: 90px 0 50px; }
-
-  .contact-section h2 {
-    font-size: 2rem;
-    margin-bottom: 16px;
-  }
-
-  .contact-section p {
-    color: var(--ink-soft);
-    max-width: 44ch;
-    margin: 0 auto 32px;
-  }
-
-  .contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin-bottom: 60px;
-  }
-
-  footer {
-    border-top: 1px solid var(--rule);
-    padding: 26px 0;
-    font-size: 0.8rem;
-    color: var(--ink-soft);
-    display: flex;
-    justify-content: space-between;
-    font-family: 'JetBrains Mono', monospace;
-  }
+  footer { padding: 28px 0; font-size: 0.8rem; color: var(--ink-faint); display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; position: relative; z-index: 2; }
 
   @media (max-width: 640px) {
     footer { flex-direction: column; gap: 8px; text-align: center; }
-    .pub, .t-item { grid-template-columns: 1fr; gap: 6px; }
+    .interest-grid { grid-template-columns: 1fr; }
+    .classifier-grid, .cg-labels { grid-template-columns: repeat(4, 1fr); }
   }
 
-  /* focus visibility */
-  a:focus-visible, .btn:focus-visible {
-    outline: 2px solid var(--accent-deep);
-    outline-offset: 2px;
-  }
+  a:focus-visible, .btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
+    .hero-eyebrow, .hero h1, .hero-sub, .hero-links, .scent-map-wrap, .scroll-cue, .profile-photo-wrap { animation: none; opacity: 1; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .orb-1,.orb-2,.orb-3,.orb-4,.orb-5, .nav-dot, .hero h1 .grad, .scroll-mouse::before, .spectrum-label .live::before, .scent-map-label .live::before, .profile-photo { animation: none; }
   }
 </style>
 </head>
 <body>
 
+<div class="progress-bar" id="progressBar"></div>
+<div class="bg-fixed">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
+  <div class="orb orb-5"></div>
+</div>
+<div class="grain"></div>
+
 <header>
   <div class="nav-inner">
-    <div class="nav-name">Puneet Kumar</div>
+    <div class="nav-name"><span class="nav-dot"></span>Puneet Kumar</div>
     <nav class="nav-links">
       <a href="#research">Research</a>
+      <a href="#spectrum-section">Spectrum</a>
       <a href="#background">Background</a>
-      <a href="#contact">Contact</a>
     </nav>
+    <a class="nav-cta" href="#contact">Contact</a>
   </div>
 </header>
 
-<section class="hero wrap" style="border-top: none;">
-  <svg class="node-diagram" viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <line x1="60" y1="70" x2="150" y2="120" stroke="#2f7a78" stroke-width="1"/>
-    <line x1="150" y1="120" x2="120" y2="220" stroke="#2f7a78" stroke-width="1"/>
-    <line x1="150" y1="120" x2="260" y2="100" stroke="#2f7a78" stroke-width="1"/>
-    <line x1="260" y1="100" x2="290" y2="200" stroke="#2f7a78" stroke-width="1"/>
-    <line x1="120" y1="220" x2="200" y2="280" stroke="#2f7a78" stroke-width="1"/>
-    <line x1="200" y1="280" x2="290" y2="200" stroke="#2f7a78" stroke-width="1"/>
-    <line x1="60" y1="70" x2="120" y2="220" stroke="#2f7a78" stroke-width="0.6" stroke-dasharray="2 4"/>
-    <circle cx="60" cy="70" r="4" fill="#2f7a78"/>
-    <circle cx="150" cy="120" r="5" fill="#1d5654"/>
-    <circle cx="260" cy="100" r="4" fill="#2f7a78"/>
-    <circle cx="120" cy="220" r="4" fill="#2f7a78"/>
-    <circle cx="290" cy="200" r="5" fill="#1d5654"/>
-    <circle cx="200" cy="280" r="4" fill="#2f7a78"/>
-  </svg>
-
-  <div class="hero-top">
-    <div>
-      <div class="hero-eyebrow">Research Portfolio</div>
-      <h1>Puneet Kumar — bridging <em>machine learning</em> and chemistry.</h1>
-    </div>
-    <div class="hero-photo">
-      <img src="profile.jpg" alt="Puneet Kumar">
+<section class="hero wrap">
+  <div class="profile-photo-wrap reveal-in-place">
+    <div class="profile-photo glass">
+      <img src="profile.jpg" alt="Puneet Kumar" onerror="this.parentElement.classList.add('no-photo')">
     </div>
   </div>
+  <div class="hero-eyebrow glass">✦ Research Portfolio</div>
+  <h1>Teaching machines to <span class="grad">smell chemistry</span>.</h1>
   <p class="hero-sub">
     PhD student under Prof. Anniruddha Chakraborty at IIT Mandi, researching machine learning
-    applications in chemistry for odour/scent detection. I work at the interface of computational
-    modeling and experimental chemistry.
+    applications in chemistry for odour and scent detection.
   </p>
   <div class="hero-links">
     <a class="btn primary" href="#research">View Research</a>
-    <a class="btn" href="#contact">Get in Touch</a>
+    <a class="btn ghost" href="#spectrum-section">Explore the Spectrum</a>
+  </div>
+
+  <div class="scent-map-wrap glass">
+    <div class="scent-map-label">
+      <span>odour-class.embedding_space — live t-SNE-style projection</span>
+      <span class="live">clustering</span>
+    </div>
+    <canvas id="scentMap"></canvas>
+  </div>
+
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <div class="scroll-mouse"></div>
   </div>
 </section>
 
 <section id="research" class="wrap">
-  <div class="section-head">
-    <h2>Research Interests</h2>
+  <div class="section-head reveal">
+    <h2>Research <span class="grad">Interests</span></h2>
     <span class="section-num mono">01 / Focus</span>
   </div>
+  <p class="section-intro reveal">Working at the boundary of chemical sensing and machine learning — turning raw spectroscopic and olfactory signal into models that classify, quantify, and generalize.</p>
+
   <div class="interest-grid">
-    <div class="interest-card">
+    <div class="interest-card glass reveal">
+      <div class="icon-badge"><svg viewBox="0 0 24 24"><path d="M12 2a4 4 0 0 0-4 4v3.6L4.5 15c-1 1.7.2 4 2.3 4h10.4c2.1 0 3.3-2.3 2.3-4L16 9.6V6a4 4 0 0 0-4-4z"/><path d="M9 15h6"/></svg></div>
       <span class="tag">ML × Chemistry</span>
-      <h3>Machine Learning for Molecular Systems</h3>
-      <p>Developing and applying machine learning models to predict chemical properties, guide materials discovery, and accelerate experimental design.</p>
-    </div>
-    <div class="interest-card">
-      <span class="tag">Sensing</span>
       <h3>Odour & Scent Detection</h3>
       <p>Applying machine learning models to chemical data for the detection and classification of odours and scents.</p>
     </div>
-    <div class="interest-card">
+    <div class="interest-card glass reveal">
+      <div class="icon-badge"><svg viewBox="0 0 24 24"><path d="M3 17l4-8 4 5 3-9 4 12 3-6"/></svg></div>
       <span class="tag">Spectroscopy</span>
       <h3>SERS-Based Quantification</h3>
       <p>Evaluating machine learning models for quantification tasks using surface-enhanced Raman spectroscopy (SERS) data.</p>
     </div>
-    <div class="interest-card">
+    <div class="interest-card glass reveal">
+      <div class="icon-badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg></div>
       <span class="tag">Data</span>
       <h3>Computational Modeling</h3>
       <p>Using data-driven approaches to complement experimental chemistry and accelerate analysis and discovery.</p>
     </div>
   </div>
+
+  <div class="classifier-panel glass reveal">
+    <div class="classifier-head">
+      <h3>Model performance snapshot — odour class confusion matrix</h3>
+      <span>illustrative visualization</span>
+    </div>
+    <div class="cg-labels" id="cgLabelsTop"></div>
+    <div class="classifier-grid" id="classifierGrid"></div>
+    <div class="classifier-legend">
+      <span>low</span>
+      <div class="legend-bar"></div>
+      <span>high confidence</span>
+    </div>
+  </div>
+</section>
+
+<section id="spectrum-section" class="wrap">
+  <div class="section-head reveal">
+    <h2>Signal <span class="grad">Deep-Dive</span></h2>
+    <span class="section-num mono">02 / Spectrum</span>
+  </div>
+  <p class="section-intro reveal">A live-simulated vibrational spectrum — five characteristic Raman bands drifting in real time, with a readout panel tracking the dominant peak, intensity, and signal-to-noise ratio.</p>
+
+  <div class="spectrum-panel glass reveal">
+    <div class="spectrum-label">
+      <span>vibrational.spectra — five-band Raman scan</span>
+      <span class="live">live</span>
+    </div>
+    <div class="spectrum-readout">
+      <div class="readout-item"><div class="rv" id="rvPeak">—</div><div class="rl">peak (cm⁻¹)</div></div>
+      <div class="readout-item"><div class="rv" id="rvInt">—</div><div class="rl">intensity</div></div>
+      <div class="readout-item"><div class="rv" id="rvSnr">—</div><div class="rl">SNR</div></div>
+    </div>
+    <canvas id="spectrum"></canvas>
+    <div class="spectrum-hint">hover the trace to inspect a point</div>
+  </div>
 </section>
 
 <section id="background" class="wrap">
-  <div class="section-head">
-    <h2>Background</h2>
-    <span class="section-num mono">02 / Path</span>
+  <div class="section-head reveal">
+    <h2>Background & <span class="grad">Path</span></h2>
+    <span class="section-num mono">03 / Path</span>
   </div>
   <div class="timeline">
-    <div class="t-item">
+    <div class="t-card glass reveal">
       <div class="t-date mono">Present</div>
       <div>
         <div class="t-role">PhD Student, Machine Learning Applications in Chemistry (Odour/Scent Detection)</div>
         <div class="t-org">IIT Mandi — under Prof. Anniruddha Chakraborty</div>
       </div>
     </div>
-    <div class="t-item">
+    <div class="t-card glass reveal">
       <div class="t-date mono">Master's Project</div>
       <div>
         <div class="t-role">Comparative Evaluation of Machine Learning Models for Lead Quantification Using SERS Data</div>
         <div class="t-org">Research project</div>
       </div>
     </div>
-    <div class="t-item">
+    <div class="t-card glass reveal">
       <div class="t-date mono">M.Sc.</div>
       <div>
         <div class="t-role">Master's Degree, Specialisation in Organic Chemistry</div>
         <div class="t-org">Central University of Himachal Pradesh, Kangra</div>
       </div>
     </div>
-    <div class="t-item">
+    <div class="t-card glass reveal">
       <div class="t-date mono">B.Sc.</div>
       <div>
-        <div class="t-role">Bachelor's Degree — Botany, Zoology &amp; Chemistry</div>
+        <div class="t-role">Bachelor's Degree — Botany, Zoology & Chemistry</div>
         <div class="t-org">NSCBM Government Degree College, Hamirpur</div>
       </div>
     </div>
   </div>
 
-  <div style="margin-top: 44px;">
-    <h3 style="font-size: 1rem; margin-bottom: 16px; font-weight: 600;">Techniques &amp; Tools</h3>
+  <div style="margin-top: 56px;" class="reveal">
+    <h3 style="font-size: 0.92rem; margin-bottom: 18px; font-weight: 600; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.08em;">Techniques &amp; Tools</h3>
     <div class="skills-row">
       <span class="skill-pill">Python</span>
       <span class="skill-pill">Machine Learning</span>
@@ -517,14 +451,16 @@
   </div>
 </section>
 
-<section id="contact" class="contact-section wrap" style="border-top: 1px solid var(--rule);">
-  <h2>Let's connect</h2>
-  <p>Open to research collaborations, discussions on ML-driven chemistry, and academic opportunities.</p>
-  <div class="contact-links">
-    <a class="btn primary" href="mailto:puneet3456kumar@gmail.com">Email Me</a>
-    <a class="btn" href="https://www.linkedin.com/in/puneet-kumar-072672424/" target="_blank" rel="noopener">LinkedIn</a>
-    <a class="btn" href="#">Google Scholar</a>
-    <a class="btn" href="#">GitHub</a>
+<section id="contact" class="contact-section wrap">
+  <div class="reveal">
+    <h2>Let's <span class="grad">connect</span></h2>
+    <p>Open to research collaborations, discussions on ML-driven chemistry, and academic opportunities.</p>
+    <div class="contact-links">
+      <a class="btn primary" href="mailto:your.email@example.com">Email Me</a>
+      <a class="btn ghost" href="#">LinkedIn</a>
+      <a class="btn ghost" href="#">Google Scholar</a>
+      <a class="btn ghost" href="#">GitHub</a>
+    </div>
   </div>
 </section>
 
@@ -532,6 +468,294 @@
   <span>© 2026 Puneet Kumar</span>
   <span>Research Portfolio</span>
 </footer>
+
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Scroll progress
+  const progressBar = document.getElementById('progressBar');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    progressBar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+  });
+
+  // Parallax orbs
+  const orbs = document.querySelectorAll('.orb');
+  window.addEventListener('scroll', () => {
+    if (reduceMotion) return;
+    const y = window.scrollY;
+    orbs.forEach((orb, i) => { orb.style.transform = `translateY(${y * (0.05 + i * 0.02)}px)`; });
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  document.querySelectorAll('.timeline .t-card').forEach((el, i) => { el.style.transitionDelay = (i * 0.1) + 's'; });
+  document.querySelectorAll('.interest-grid .interest-card').forEach((el, i) => { el.style.transitionDelay = (i * 0.12) + 's'; });
+
+  // Specular highlight follow on glass cards
+  if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
+    document.querySelectorAll('.interest-card, .t-card, .classifier-panel, .spectrum-panel').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const px = ((e.clientX - r.left) / r.width) * 100;
+        const py = ((e.clientY - r.top) / r.height) * 100;
+        card.style.background = `radial-gradient(circle at ${px}% ${py}%, rgba(255,255,255,0.85), rgba(255,255,255,0.48) 60%)`;
+      });
+      card.addEventListener('mouseleave', () => { card.style.background = ''; });
+    });
+  }
+
+  /* ---------- Signature 1: Scent molecule / embedding map ---------- */
+  const scentCanvas = document.getElementById('scentMap');
+  const sCtx = scentCanvas.getContext('2d');
+  let sw, sh, sdpr;
+  function resizeScent() {
+    sdpr = window.devicePixelRatio || 1;
+    sw = scentCanvas.clientWidth; sh = scentCanvas.clientHeight;
+    scentCanvas.width = sw * sdpr; scentCanvas.height = sh * sdpr;
+    sCtx.setTransform(sdpr, 0, 0, sdpr, 0, 0);
+  }
+  window.addEventListener('resize', resizeScent);
+  resizeScent();
+
+  // Clusters representing different "odour classes"
+  const clusterColors = ['#0071e3', '#0fb8ac', '#7d6ff0', '#ee6f9a', '#f0a860'];
+  const clusters = clusterColors.map((c, i) => ({
+    cx: 0.15 + (i % 3) * 0.35 + (i > 2 ? 0.15 : 0),
+    cy: 0.25 + Math.floor(i / 3) * 0.5,
+    color: c
+  }));
+
+  const nodes = [];
+  clusters.forEach((cl, ci) => {
+    const count = 7 + Math.floor(Math.random() * 4);
+    for (let i = 0; i < count; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const rad = Math.random() * 0.09;
+      nodes.push({
+        cluster: ci,
+        baseX: cl.cx + Math.cos(angle) * rad,
+        baseY: cl.cy + Math.sin(angle) * rad,
+        phase: Math.random() * Math.PI * 2,
+        speed: 0.3 + Math.random() * 0.4,
+        r: 2.4 + Math.random() * 2.2,
+        color: cl.color
+      });
+    }
+  });
+
+  // Build a small set of edges between nearby nodes in same cluster + a few cross-links
+  const edges = [];
+  nodes.forEach((n, i) => {
+    nodes.forEach((m, j) => {
+      if (j <= i) return;
+      if (n.cluster === m.cluster) {
+        const dx = n.baseX - m.baseX, dy = n.baseY - m.baseY;
+        if (Math.sqrt(dx*dx + dy*dy) < 0.07 && Math.random() < 0.5) edges.push([i, j]);
+      }
+    });
+  });
+
+  let mouseX = -1, mouseY = -1;
+  scentCanvas.addEventListener('mousemove', (e) => {
+    const r = scentCanvas.getBoundingClientRect();
+    mouseX = e.clientX - r.left; mouseY = e.clientY - r.top;
+  });
+  scentCanvas.addEventListener('mouseleave', () => { mouseX = -1; mouseY = -1; });
+
+  let st = 0;
+  function drawScentMap() {
+    sCtx.clearRect(0, 0, sw, sh);
+
+    const positions = nodes.map(n => {
+      const wob = reduceMotion ? 0 : Math.sin(st * n.speed + n.phase) * 0.012;
+      const wob2 = reduceMotion ? 0 : Math.cos(st * n.speed * 0.8 + n.phase) * 0.012;
+      return { x: (n.baseX + wob) * sw, y: (n.baseY + wob2) * sh };
+    });
+
+    // edges
+    sCtx.lineWidth = 1;
+    edges.forEach(([i, j]) => {
+      const a = positions[i], b = positions[j];
+      sCtx.strokeStyle = 'rgba(29,29,31,0.08)';
+      sCtx.beginPath(); sCtx.moveTo(a.x, a.y); sCtx.lineTo(b.x, b.y); sCtx.stroke();
+    });
+
+    // nodes
+    nodes.forEach((n, i) => {
+      const p = positions[i];
+      const dx = p.x - mouseX, dy = p.y - mouseY;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      const hover = dist < 40;
+
+      sCtx.beginPath();
+      sCtx.arc(p.x, p.y, hover ? n.r * 1.6 : n.r, 0, Math.PI * 2);
+      sCtx.fillStyle = n.color;
+      sCtx.globalAlpha = hover ? 1 : 0.78;
+      sCtx.shadowColor = n.color;
+      sCtx.shadowBlur = hover ? 14 : 5;
+      sCtx.fill();
+      sCtx.shadowBlur = 0;
+      sCtx.globalAlpha = 1;
+    });
+
+    if (!reduceMotion) { st += 0.012; requestAnimationFrame(drawScentMap); }
+  }
+  drawScentMap();
+
+  /* ---------- Signature 2: classifier confusion grid ---------- */
+  const labels = ['Floral', 'Woody', 'Citrus', 'Musk', 'Herbal', 'Spicy'];
+  const cgTop = document.getElementById('cgLabelsTop');
+  labels.forEach(l => {
+    const s = document.createElement('span');
+    s.textContent = l;
+    cgTop.appendChild(s);
+  });
+
+  const grid = document.getElementById('classifierGrid');
+  const cells = [];
+  for (let r = 0; r < 6; r++) {
+    for (let c = 0; c < 6; c++) {
+      const cell = document.createElement('div');
+      cell.className = 'cg-cell';
+      const isDiag = r === c;
+      const val = isDiag ? 0.72 + Math.random() * 0.25 : Math.random() * 0.28;
+      cell.dataset.val = val;
+      cell.textContent = val > 0.5 ? Math.round(val * 100) : '';
+      grid.appendChild(cell);
+      cells.push(cell);
+    }
+  }
+
+  function paintCells() {
+    cells.forEach(cell => {
+      let v = parseFloat(cell.dataset.val);
+      if (!reduceMotion) {
+        v = Math.max(0.02, Math.min(0.98, v + (Math.random() - 0.5) * 0.05));
+        cell.dataset.val = v;
+      }
+      cell.style.background = `rgba(0,113,227,${0.06 + v * 0.7})`;
+      cell.style.color = v > 0.5 ? '#fff' : 'rgba(29,29,31,0.5)';
+      cell.textContent = v > 0.45 ? Math.round(v * 100) : '';
+    });
+  }
+  paintCells();
+  if (!reduceMotion) setInterval(paintCells, 4000);
+
+  /* ---------- Spectrum deep-dive ---------- */
+  const canvas = document.getElementById('spectrum');
+  const ctx = canvas.getContext('2d');
+  let width, height, dpr;
+  function resizeSpectrum() {
+    dpr = window.devicePixelRatio || 1;
+    width = canvas.clientWidth; height = canvas.clientHeight;
+    canvas.width = width * dpr; canvas.height = height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  window.addEventListener('resize', resizeSpectrum);
+  resizeSpectrum();
+
+  const bandLabels = ['520', '780', '1050', '1360', '1580'];
+  const peaks = [0.1, 0.3, 0.5, 0.68, 0.87].map((x, i) => ({
+    x, baseAmp: 0.32 + Math.random() * 0.5, width: 0.014 + Math.random() * 0.016,
+    phase: Math.random() * Math.PI * 2, driftSpeed: 0.35 + Math.random() * 0.4, label: bandLabels[i]
+  }));
+
+  const rvPeak = document.getElementById('rvPeak');
+  const rvInt = document.getElementById('rvInt');
+  const rvSnr = document.getElementById('rvSnr');
+
+  let t = 0, lastReadout = 0;
+  let hoverX = -1;
+
+  canvas.addEventListener('mousemove', (e) => {
+    const r = canvas.getBoundingClientRect();
+    hoverX = e.clientX - r.left;
+  });
+  canvas.addEventListener('mouseleave', () => { hoverX = -1; });
+
+  function computeY(xNorm, time) {
+    let y = 0.62;
+    peaks.forEach((p) => {
+      const wobble = reduceMotion ? 0 : Math.sin(time * p.driftSpeed + p.phase) * 0.02;
+      const ampWobble = reduceMotion ? 0 : Math.sin(time * 0.5 + p.phase * 2) * 0.06;
+      const dist = xNorm - (p.x + wobble);
+      const amp = p.baseAmp + ampWobble;
+      y -= (amp * 0.44) * Math.exp(-(dist * dist) / (2 * p.width * p.width));
+    });
+    const noise = reduceMotion ? 0 : (Math.sin(xNorm * 90 + time * 4) * 0.004 + Math.sin(xNorm * 240 - time * 6) * 0.002);
+    return y + noise;
+  }
+
+  function drawSpectrum() {
+    ctx.clearRect(0, 0, width, height);
+
+    ctx.strokeStyle = 'rgba(29,29,31,0.06)';
+    ctx.lineWidth = 1;
+    for (let gx = 0; gx <= width; gx += width / 8) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, height); ctx.stroke(); }
+
+    const fillGrad = ctx.createLinearGradient(0, 0, 0, height);
+    fillGrad.addColorStop(0, 'rgba(0,113,227,0.16)');
+    fillGrad.addColorStop(1, 'rgba(0,113,227,0.0)');
+    ctx.beginPath(); ctx.moveTo(0, height);
+    for (let px = 0; px <= width; px += 2) { ctx.lineTo(px, computeY(px / width, t) * height); }
+    ctx.lineTo(width, height); ctx.closePath(); ctx.fillStyle = fillGrad; ctx.fill();
+
+    const lineGrad = ctx.createLinearGradient(0, 0, width, 0);
+    lineGrad.addColorStop(0, '#0071e3'); lineGrad.addColorStop(0.5, '#0fb8ac'); lineGrad.addColorStop(1, '#7d6ff0');
+    ctx.strokeStyle = lineGrad; ctx.lineWidth = 2.2; ctx.lineJoin = 'round';
+    ctx.beginPath();
+    for (let px = 0; px <= width; px += 2) {
+      const y = computeY(px / width, t) * height;
+      if (px === 0) ctx.moveTo(px, y); else ctx.lineTo(px, y);
+    }
+    ctx.shadowColor = 'rgba(0,113,227,0.35)'; ctx.shadowBlur = 8; ctx.stroke(); ctx.shadowBlur = 0;
+
+    peaks.forEach((p) => {
+      const wobble = reduceMotion ? 0 : Math.sin(t * p.driftSpeed + p.phase) * 0.02;
+      const xNorm = p.x + wobble;
+      const px = xNorm * width, py = computeY(xNorm, t) * height;
+      ctx.beginPath(); ctx.arc(px, py, 3.2, 0, Math.PI * 2);
+      ctx.fillStyle = '#0071e3'; ctx.shadowColor = 'rgba(0,113,227,0.6)'; ctx.shadowBlur = 6; ctx.fill(); ctx.shadowBlur = 0;
+      ctx.font = '10px "JetBrains Mono", monospace'; ctx.fillStyle = 'rgba(29,29,31,0.4)'; ctx.textAlign = 'center';
+      ctx.fillText(p.label, px, Math.max(12, py - 10));
+    });
+
+    // hover crosshair + readout
+    if (hoverX >= 0) {
+      const xNorm = hoverX / width;
+      const y = computeY(xNorm, t) * height;
+      ctx.strokeStyle = 'rgba(29,29,31,0.25)'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(hoverX, 0); ctx.lineTo(hoverX, height); ctx.stroke();
+      ctx.beginPath(); ctx.arc(hoverX, y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = '#ee6f9a'; ctx.shadowColor = 'rgba(238,111,154,0.6)'; ctx.shadowBlur = 8; ctx.fill(); ctx.shadowBlur = 0;
+
+      const shift = Math.round(300 + xNorm * 1500);
+      ctx.font = '600 11px "JetBrains Mono", monospace';
+      ctx.fillStyle = '#1d1d1f';
+      ctx.textAlign = hoverX > width - 70 ? 'right' : 'left';
+      ctx.fillText(shift + ' cm⁻¹', hoverX + (hoverX > width - 70 ? -10 : 10), 16);
+    }
+
+    if (t - lastReadout > 1.4) {
+      lastReadout = t;
+      const strongest = peaks.reduce((a, b) => (b.baseAmp > a.baseAmp ? b : a));
+      rvPeak.textContent = strongest.label;
+      rvInt.textContent = (strongest.baseAmp * 1000 | 0) + ' a.u.';
+      rvSnr.textContent = (18 + Math.random() * 6).toFixed(1) + ' dB';
+    }
+
+    if (!reduceMotion) { t += 0.016; }
+    requestAnimationFrame(drawSpectrum);
+  }
+  if (reduceMotion) {
+    rvPeak.textContent = peaks[2].label; rvInt.textContent = '412 a.u.'; rvSnr.textContent = '21.3 dB';
+  }
+  drawSpectrum();
+</script>
 
 </body>
 </html>
