@@ -170,6 +170,35 @@
     .node-diagram { display: none; }
   }
 
+.hero-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  .hero-photo {
+    flex-shrink: 0;
+    width: 132px;
+    height: 132px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    background: var(--paper-deep);
+  }
+
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(15%);
+  }
+
+  @media (max-width: 640px) {
+    .hero-top { flex-direction: column-reverse; gap: 24px; }
+    .hero-photo { width: 96px; height: 96px; }
+  }
+
   /* ---------- Section shell ---------- */
   section { padding: 64px 0; border-top: 1px solid var(--rule); }
 
@@ -391,8 +420,15 @@
     <circle cx="200" cy="280" r="4" fill="#2f7a78"/>
   </svg>
 
-  <div class="hero-eyebrow">Research Portfolio</div>
-  <h1>Puneet Kumar — bridging <em>machine learning</em> and chemistry.</h1>
+  <div class="hero-top">
+    <div>
+      <div class="hero-eyebrow">Research Portfolio</div>
+      <h1>Puneet Kumar — bridging <em>machine learning</em> and chemistry.</h1>
+    </div>
+    <div class="hero-photo">
+      <img src="profile.jpg" alt="Puneet Kumar">
+    </div>
+  </div>
   <p class="hero-sub">
     PhD student under Prof. Anniruddha Chakraborty at IIT Mandi, researching machine learning
     applications in chemistry for odour/scent detection. I work at the interface of computational
