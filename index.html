@@ -203,7 +203,7 @@
   .section-intro { color: var(--ink-dim); max-width: 60ch; margin-bottom: 44px; font-size: 1rem; }
 
   /* ---------- Research interests: glass tiles w/ mini classifier viz ---------- */
-  .interest-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .interest-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
   @media (max-width: 780px) { .interest-grid { grid-template-columns: 1fr; } }
   .interest-card { border-radius: 22px; padding: 28px 24px; transition: transform 0.45s cubic-bezier(.2,.9,.25,1), box-shadow 0.45s ease; }
   .interest-card:hover { transform: translateY(-8px); box-shadow: 0 20px 46px rgba(31,41,55,0.14), 0 1px 0 rgba(255,255,255,0.7) inset; }
@@ -300,8 +300,8 @@
     <div class="nav-name"><span class="nav-dot"></span>Puneet Kumar</div>
     <nav class="nav-links">
       <a href="#research">Research</a>
-      <a href="#spectrum-section">Spectrum</a>
       <a href="#background">Background</a>
+      <a href="#visuals">Visuals</a>
     </nav>
     <a class="nav-cta" href="#contact">Contact</a>
   </div>
@@ -321,15 +321,7 @@
   </p>
   <div class="hero-links">
     <a class="btn primary" href="#research">View Research</a>
-    <a class="btn ghost" href="#spectrum-section">Explore the Spectrum</a>
-  </div>
-
-  <div class="scent-map-wrap glass">
-    <div class="scent-map-label">
-      <span>odour-class.embedding_space — live t-SNE-style projection</span>
-      <span class="live">clustering</span>
-    </div>
-    <canvas id="scentMap"></canvas>
+    <a class="btn ghost" href="#visuals">Explore the Data</a>
   </div>
 
   <div class="scroll-cue">
@@ -364,49 +356,19 @@
       <h3>Computational Modeling</h3>
       <p>Using data-driven approaches to complement experimental chemistry and accelerate analysis and discovery.</p>
     </div>
-  </div>
-
-  <div class="classifier-panel glass reveal">
-    <div class="classifier-head">
-      <h3>Model performance snapshot — odour class confusion matrix</h3>
-      <span>illustrative visualization</span>
+    <div class="interest-card glass reveal">
+      <div class="icon-badge"><svg viewBox="0 0 24 24"><path d="M2 12h4l2-7 4 14 3-10 2 3h5"/></svg></div>
+      <span class="tag">Spectroscopy</span>
+      <h3>Vibrational Spectroscopy</h3>
+      <p>Analyzing vibrational spectral signatures — Raman and related techniques — as a data source for machine learning-driven chemical analysis.</p>
     </div>
-    <div class="cg-labels" id="cgLabelsTop"></div>
-    <div class="classifier-grid" id="classifierGrid"></div>
-    <div class="classifier-legend">
-      <span>low</span>
-      <div class="legend-bar"></div>
-      <span>high confidence</span>
-    </div>
-  </div>
-</section>
-
-<section id="spectrum-section" class="wrap">
-  <div class="section-head reveal">
-    <h2>Signal <span class="grad">Deep-Dive</span></h2>
-    <span class="section-num mono">02 / Spectrum</span>
-  </div>
-  <p class="section-intro reveal">A live-simulated vibrational spectrum — five characteristic Raman bands drifting in real time, with a readout panel tracking the dominant peak, intensity, and signal-to-noise ratio.</p>
-
-  <div class="spectrum-panel glass reveal">
-    <div class="spectrum-label">
-      <span>vibrational.spectra — five-band Raman scan</span>
-      <span class="live">live</span>
-    </div>
-    <div class="spectrum-readout">
-      <div class="readout-item"><div class="rv" id="rvPeak">—</div><div class="rl">peak (cm⁻¹)</div></div>
-      <div class="readout-item"><div class="rv" id="rvInt">—</div><div class="rl">intensity</div></div>
-      <div class="readout-item"><div class="rv" id="rvSnr">—</div><div class="rl">SNR</div></div>
-    </div>
-    <canvas id="spectrum"></canvas>
-    <div class="spectrum-hint">hover the trace to inspect a point</div>
   </div>
 </section>
 
 <section id="background" class="wrap">
   <div class="section-head reveal">
     <h2>Background & <span class="grad">Path</span></h2>
-    <span class="section-num mono">03 / Path</span>
+    <span class="section-num mono">02 / Path</span>
   </div>
   <div class="timeline">
     <div class="t-card glass reveal">
@@ -451,15 +413,59 @@
   </div>
 </section>
 
+<section id="visuals" class="wrap">
+  <div class="section-head reveal">
+    <h2>Data in <span class="grad">Motion</span></h2>
+    <span class="section-num mono">03 / Visuals</span>
+  </div>
+  <p class="section-intro reveal">Live, animated illustrations of the kinds of signal and model behavior this research works with.</p>
+
+  <div class="scent-map-wrap glass reveal">
+    <div class="scent-map-label">
+      <span>odour-class.embedding_space — live t-SNE-style projection</span>
+      <span class="live">clustering</span>
+    </div>
+    <canvas id="scentMap"></canvas>
+  </div>
+
+  <div class="classifier-panel glass reveal" style="margin-top: 20px;">
+    <div class="classifier-head">
+      <h3>Model performance snapshot — odour class confusion matrix</h3>
+      <span>illustrative visualization</span>
+    </div>
+    <div class="cg-labels" id="cgLabelsTop"></div>
+    <div class="classifier-grid" id="classifierGrid"></div>
+    <div class="classifier-legend">
+      <span>low</span>
+      <div class="legend-bar"></div>
+      <span>high confidence</span>
+    </div>
+  </div>
+
+  <div class="spectrum-panel glass reveal" style="margin-top: 20px;">
+    <div class="spectrum-label">
+      <span>vibrational.spectra — five-band Raman scan</span>
+      <span class="live">live</span>
+    </div>
+    <div class="spectrum-readout">
+      <div class="readout-item"><div class="rv" id="rvPeak">—</div><div class="rl">peak (cm⁻¹)</div></div>
+      <div class="readout-item"><div class="rv" id="rvInt">—</div><div class="rl">intensity</div></div>
+      <div class="readout-item"><div class="rv" id="rvSnr">—</div><div class="rl">SNR</div></div>
+    </div>
+    <canvas id="spectrum"></canvas>
+    <div class="spectrum-hint">hover the trace to inspect a point</div>
+  </div>
+</section>
+
 <section id="contact" class="contact-section wrap">
   <div class="reveal">
     <h2>Let's <span class="grad">connect</span></h2>
     <p>Open to research collaborations, discussions on ML-driven chemistry, and academic opportunities.</p>
     <div class="contact-links">
-      <a class="btn primary" href="mailto:your.email@example.com">Email Me</a>
-      <a class="btn ghost" href="#">LinkedIn</a>
+      <a class="btn primary" href="mailto:puneet3456kumar@gmail.com">Email Me</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/puneet-kumar-072672424/">LinkedIn</a>
       <a class="btn ghost" href="#">Google Scholar</a>
-      <a class="btn ghost" href="#">GitHub</a>
+      <a class="btn ghost" href="https://github.com/akira-n1">GitHub</a>
     </div>
   </div>
 </section>
